@@ -1,16 +1,14 @@
 import React from 'react';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { TOKE_POST, USER_GET } from '../../../services/api';
+import { UserContext } from '../../context/UserContext';
 
-import { UserContext } from '../../../context/UserContext';
+import { Input, Button, Error }from '../../components/Common';
+import useForm from '../../hooks/useForm';
 
-import { Input, Button, Error }from '../../../components/Common';
-import useForm from '../../../hooks/useForm';
-
-import styles from '../Form/Form.module.css';
-import stylesBtn from '../../../components/Common/Button/styles.module.css';
+import styles from './LoginForm.module.css';
+import stylesBtn from '../../components/Common/Button/styles.module.css';
 
 const LoginForm = () => {
   const username = useForm();
