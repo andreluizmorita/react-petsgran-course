@@ -1,4 +1,4 @@
-export const API_URL = 'https://dogsapi.origamid.dev/json';
+export const API_URL = process.env.REACT_APP_API_URL;
 
 export function TOKE_POST(body) {
   return {
@@ -51,3 +51,15 @@ export function USER_POST(body) {
   };
 }
 
+export function PHOTO_POST(formData, token) {
+  return {
+    url: API_URL + '/api/photo',
+    options: {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+      body: formData,
+    },
+  };
+}
