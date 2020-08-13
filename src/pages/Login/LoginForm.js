@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { UserContext } from '../../context/UserContext';
 
-import { Input, Button, Error }from '../../components/Common';
+import { Input, Button }from '../../components/Common';
+import Error from '../../components/Helper/Error';
 import useForm from '../../hooks/useForm';
 
 import styles from './LoginForm.module.css';

@@ -5,9 +5,12 @@ import { UserStorage } from './context/UserContext';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ProtectedRoute from './components/Helper/ProtectedRoutes';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
+import User from './pages/User';
+
 
 import './App.css';
 
@@ -20,7 +23,8 @@ function App() {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login/*" element={<Login />} />
+            <Route path="login/*" element={<Login />} />
+            <ProtectedRoute path="conta/*" element={<User />} />
           </Routes>
 
           <Footer />
