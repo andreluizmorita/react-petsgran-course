@@ -1,31 +1,37 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import PhotoComments from './PhotoComments';
+import PhotoDelete from './PhotoDelete';
+import Image from '../Helper/Image';
+
+import { UserContext } from '../../context/UserContext';
 
 import styles from './PhotoContent.module.css';
-import { Link } from 'react-router-dom';
-import PhotoComments from './PhotoComments';
 
-const PhotoContent = ({ data }) => {
+const PhotoContent = ({ data, single }) => {
+  const user = React.useContext(UserContext);
   const { photo, comments } = data;
   
   return (
-    <div className={styles.photo}>
+    <div className={`${styles.photo} ${single ? styles.single : ''}`}>
       <div className={styles.img}>
-        <img src={photo.src} alt={photo.title} />
+        <Image src={photo.src} alt={photo.title} />
       </div>
 
       <div className={styles.details}>
         <div>
-          <p>
-            <Link to={`/perfil/${photo.author}`}>
-              @{photo.author}
-              <span className={styles.visualizacoes}>
-                {photo.acessos}
-              </span>
-            </Link>
+          <p className={styles.author}>
+            {user.data && user.data.username === photo.author ? (
+              <PhotoDelete id={photo.id} />
+            ) : (
+              <Link to={`/perfil/${photo.author}`}>@{photo.author}</Link>
+            )}
+            <span className={styles.visualizacoes}>{photo.acessos}</span>
           </p>
           
           <h1 className="title">
-            <Link to={`/fotos/${photo.id}`}>
+            <Link to={`/foto/${photo.id}`}>
               {photo.title}
             </Link>
           </h1>
@@ -37,7 +43,7 @@ const PhotoContent = ({ data }) => {
         </div>
       </div>
 
-      <PhotoComments id={photo.id} comment={comments} />
+      <PhotoComments single={single} id={photo.id} comments={comments} />
 
     </div>
   );

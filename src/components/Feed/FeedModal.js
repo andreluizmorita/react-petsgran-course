@@ -13,22 +13,19 @@ import styles from './FeedModal.module.css';
 const FeedModal = ({ photo, setModalPhoto }) => {
   const { data, error, loading, request } = useFetch();
 
+  React.useEffect(() => {
+    const { url, options } = PHOTO_GET(photo.id);
+    request(url, options);
+  }, [photo, request]);
+
   function handleOutsideClick(event) {
     if (event.target === event.currentTarget) setModalPhoto(null);
   }
 
-  React.useEffect(() => {
-    async function fetchPhoto() {
-      const { url, options } = PHOTO_GET(photo.id);
-      await request(url, options);
-    }
-    fetchPhoto();
-  }, [photo, request]);
-
   return (
-    <div className={styles.modal} onClick={setModalPhoto}>
-      {error && <Error error={error}/> }
-      {loading && <Loading /> }
+    <div className={styles.modal} onClick={handleOutsideClick}>
+      {error && <Error error={error} />}
+      {loading && <Loading />}
       {data && <PhotoContent data={data} />}
     </div>
   );
