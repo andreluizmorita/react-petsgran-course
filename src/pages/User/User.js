@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import NotFound from '../../components/NotFound';
 import Feed from '../../components/Feed';
+import Head from '../../components/Helper/Head';
 import { UserContext } from '../../context/UserContext';
 
 import UserHeader from './UserHeader';
@@ -16,6 +17,10 @@ const User = () => {
     <div className="container">
       <UserHeader />
       
+      <Head
+        title="Perfil"
+      />
+
       <Routes>
         <Route path="/" element={<Feed user={data.id} />} />
         <Route path="/postar" element={<UserPhotoPost />} />
