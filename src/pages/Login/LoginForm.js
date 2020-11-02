@@ -47,7 +47,7 @@ const LoginForm = () => {
             ? <Button disabled type="button">Carregando...</Button> 
             : <Button type="submit">Entrar</Button>
         }
-        <Error error={error} />
+        <Error error={error && 'Dados incorretos'} />
       </form>
 
       <Link className={styles.perdeu} to="/login/perdeu">
